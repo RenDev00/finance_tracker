@@ -1,0 +1,32 @@
+[
+    {
+        "amount": 3200.0,
+        "type": "INCOME",
+        "category": "salary",
+        "date": "2025-10-02 14:43:35"
+    },
+    {
+        "amount": 30.0,
+        "type": "EXPENSE",
+        "category": "groceries",
+        "date": "2025-10-02 14:43:57"
+    },
+    {
+        "amount": 500.0,
+        "type": "EXPENSE",
+        "category": "rent",
+        "date": "2025-10-02 14:44:17"
+    },
+    {
+        "amount": 100.0,
+        "type": "EXPENSE",
+        "category": "utility",
+        "date": "2025-10-02 14:44:26"
+    },
+    {
+        "amount": 55.0,
+        "type": "EXPENSE",
+        "category": "groceries",
+        "date": "2025-10-02 14:46:16"
+    }
+]
