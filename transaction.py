@@ -13,7 +13,7 @@ class Transaction:
         amount: float,
         transaction_type: TransactionType,
         transaction_category: str,
-        transaction_date: datetime = None,
+        transaction_date: str = None,
     ):
         self.amount = amount
         self.transaction_type = transaction_type
