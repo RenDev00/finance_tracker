@@ -46,3 +46,26 @@ class FinanceTracker:
                 f,
                 indent=4,
             )
+
+    def get_transactions_by_type(
+        self, transaction_type: TransactionType
+    ) -> list[Transaction]:
+        return [t for t in self.transactions if t.transaction_type == transaction_type]
+
+    def get_transactions_by_category(
+        self, transaction_category: str
+    ) -> list[Transaction]:
+        return [
+            t
+            for t in self.transactions
+            if t.transaction_category == transaction_category.lower()
+        ]
+
+    def get_total_income(self) -> float:
+        return sum(self.get_transactions_by_type(TransactionType.INCOME))
+
+    def get_total_expenses(self) -> float:
+        return sum(self.get_transactions_by_type(TransactionType.EXPENSE))
+
+    def get_balance(self) -> float:
+        return self.get_total_income() - self.get_total_expenses()
