@@ -62,10 +62,14 @@ class FinanceTracker:
         ]
 
     def get_total_income(self) -> float:
-        return sum(self.get_transactions_by_type(TransactionType.INCOME))
+        return sum(
+            [t.amount for t in self.get_transactions_by_type(TransactionType.INCOME)]
+        )
 
     def get_total_expenses(self) -> float:
-        return sum(self.get_transactions_by_type(TransactionType.EXPENSE))
+        return sum(
+            [t.amount for t in self.get_transactions_by_type(TransactionType.EXPENSE)]
+        )
 
     def get_balance(self) -> float:
         return self.get_total_income() - self.get_total_expenses()
