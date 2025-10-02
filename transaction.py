@@ -23,3 +23,11 @@ class Transaction:
             if transaction_date
             else datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
+
+    def as_dict(self) -> dict:
+        return {
+            "amount": self.amount,
+            "type": self.transaction_type.name,
+            "category": self.transaction_category,
+            "date": self.transaction_date,
+        }
