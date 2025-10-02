@@ -33,7 +33,7 @@ def print_transactions_by_category_cli(tracker: FinanceTracker):
 
 
 def main():
-    tracker = FinanceTracker("./data.json")
+    tracker = FinanceTracker("./data/sample_data.json")
 
     cont = True
     while cont:
