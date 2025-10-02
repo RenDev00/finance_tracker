@@ -17,7 +17,7 @@ class Transaction:
     ):
         self.amount = amount
         self.transaction_type = transaction_type
-        self.transaction_category = transaction_category
+        self.transaction_category = transaction_category.lower()
         self.transaction_date = (
             transaction_date
             if transaction_date
