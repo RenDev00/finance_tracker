@@ -24,6 +24,9 @@ class Transaction:
             else datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
 
+    def __str__(self):
+        return f"{self.transaction_date} | {self.transaction_type.name.capitalize().ljust(7)} | {self.amount:>8.2f} | {self.transaction_category}"
+
     def as_dict(self) -> dict:
         return {
             "amount": self.amount,
