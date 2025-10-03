@@ -31,7 +31,7 @@ class FinanceTrackerView(QMainWindow):
         group_box_search = QGroupBox("Search")
         self.line_edit_search_term = QLineEdit(placeholderText="Enter a search term")
         self.combo_box_filter = QComboBox()
-        self.combo_box_filter.addItems(["All", "Expenses", "Income"])
+        self.combo_box_filter.addItems(["All", "Expense", "Income"])
         self.button_search = QPushButton("Search")
 
         group_box_transactions = QGroupBox("Transactions")

@@ -23,6 +23,7 @@ class FinanceTrackerController:
         self.view.button_new.clicked.connect(self.handle_new)
         self.view.button_edit.clicked.connect(self.handle_edit)
         self.view.button_delete.clicked.connect(self.handle_delete)
+        self.view.button_search.clicked.connect(self.handle_search)
 
     def populate_transaction_table(self, transactions: list[Transaction] = None):
         if transactions == None:
@@ -85,3 +86,38 @@ class FinanceTrackerController:
         if dialog.exec() == QMessageBox.StandardButton.Yes:
             self.model.delete_transaction_by_uuid(id)
             self.populate_transaction_table()
+
+    def handle_search(self):
+        search_term = self.view.line_edit_search_term.text().lower()
+        search_filter = self.view.combo_box_filter.currentText().strip().upper()
+
+        # No searchterm and filter is all
+        if search_term == "" and search_filter == "ALL":
+            transactions = self.model.transactions
+
+        # No Searchterm and filter is not all
+        if search_term == "" and search_filter != "ALL":
+            transactions = [
+                t
+                for t in self.model.transactions
+                if t.transaction_type.name == search_filter
+            ]
+
+        # Searchterm entered and filter is all
+        if search_term != "" and search_filter == "ALL":
+            transactions = [
+                t
+                for t in self.model.transactions
+                if search_term in t.transaction_category
+            ]
+
+        # Searchterm entered and filter not all
+        if search_term != "" and search_filter != "ALL":
+            transactions = [
+                t
+                for t in self.model.transactions
+                if (search_term in t.transaction_category)
+                and (t.transaction_type.name == search_filter)
+            ]
+
+        self.populate_transaction_table(transactions)
