@@ -1,7 +1,7 @@
 import json
 import os
 
-from transaction import Transaction, TransactionType
+from model.transaction import Transaction, TransactionType
 
 
 class FinanceTracker:

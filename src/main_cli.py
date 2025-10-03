@@ -1,5 +1,5 @@
-from finance_tracker import FinanceTracker
-from transaction import TransactionType
+from model.finance_tracker import FinanceTracker
+from model.transaction import TransactionType
 
 
 def add_transaction_cli(tracker: FinanceTracker):
