@@ -53,7 +53,7 @@ class FinanceTrackerController:
         dialog_view = NewTransactionDialogView(self.view)
         dialog_controller = NewTransactionDialogController(dialog_view, self.model)
         if dialog_controller.execute():
-            self.populate_transaction_table()
+            self.handle_search()
 
     def handle_edit(self):
         current_table_row_index = self.view.table_transactions.currentRow()
@@ -67,7 +67,7 @@ class FinanceTrackerController:
         )
 
         if dialog_controller.execute():
-            self.populate_transaction_table()
+            self.handle_search()
 
     def handle_delete(self):
         current_table_row_index = self.view.table_transactions.currentRow()
@@ -86,7 +86,7 @@ class FinanceTrackerController:
 
         if dialog.exec() == QMessageBox.StandardButton.Yes:
             self.model.delete_transaction_by_uuid(id)
-            self.populate_transaction_table()
+            self.handle_search()
 
     def handle_search(self):
         search_term = self.view.line_edit_search_term.text().lower()
