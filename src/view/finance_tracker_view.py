@@ -3,6 +3,7 @@ from PySide6.QtWidgets import (
     QWidget,
     QPushButton,
     QTableWidget,
+    QAbstractItemView,
     QLineEdit,
     QVBoxLayout,
     QHBoxLayout,
@@ -37,6 +38,9 @@ class FinanceTrackerView(QMainWindow):
         )
         self.table_transactions.horizontalHeader().setStretchLastSection(True)
         self.table_transactions.verticalHeader().setVisible(False)
+        self.table_transactions.setEditTriggers(
+            QAbstractItemView.EditTrigger.NoEditTriggers
+        )
 
         # Layout
         h_layout_filter = QHBoxLayout()
