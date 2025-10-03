@@ -23,7 +23,8 @@ class FinanceTrackerController:
         self.view.button_new.clicked.connect(self.handle_new)
         self.view.button_edit.clicked.connect(self.handle_edit)
         self.view.button_delete.clicked.connect(self.handle_delete)
-        self.view.button_search.clicked.connect(self.handle_search)
+        self.view.line_edit_search_term.textChanged.connect(self.handle_search)
+        self.view.combo_box_filter.currentTextChanged.connect(self.handle_search)
 
     def populate_transaction_table(self, transactions: list[Transaction] = None):
         if transactions == None:
