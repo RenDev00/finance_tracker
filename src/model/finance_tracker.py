@@ -30,6 +30,20 @@ class FinanceTracker:
     def get_transaction_by_uuid(self, uuid: uuid.UUID):
         return next(t for t in self.transactions if t.uuid == uuid)
 
+    def edit_transaction_by_uuid(
+        self,
+        uuid: uuid.UUID,
+        amount: float,
+        transaction_type: TransactionType,
+        transaction_category: str,
+        transaction_date: str,
+    ):
+        transaction = self.get_transaction_by_uuid(uuid)
+        transaction.amount = amount
+        transaction.transaction_type = transaction_type
+        transaction.transaction_category = transaction_category
+        transaction.transaction_date = transaction_date
+
     def delete_transaction_by_uuid(self, uuid: uuid.UUID):
         self.transactions.remove(self.get_transaction_by_uuid(uuid))
         self.save_transactions()

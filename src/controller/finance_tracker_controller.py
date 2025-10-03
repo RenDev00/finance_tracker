@@ -1,7 +1,11 @@
 import uuid
+from controller.edit_transaction_dialog_controller import (
+    EditTransactionDialogController,
+)
 from controller.new_transaction_dialog_controller import NewTransactionDialogController
 from model.finance_tracker import FinanceTracker
 from model.transaction import Transaction
+from view.edit_transaction_dialog_view import EditTransactionDialogView
 from view.finance_tracker_view import FinanceTrackerView
 
 from PySide6.QtWidgets import QTableWidgetItem, QMessageBox
@@ -50,7 +54,18 @@ class FinanceTrackerController:
             self.populate_transaction_table()
 
     def handle_edit(self):
-        pass
+        current_table_row_index = self.view.table_transactions.currentRow()
+        uuid_item = self.view.table_transactions.item(current_table_row_index, 0)
+        id = uuid.UUID(uuid_item.text())
+        transaction = self.model.get_transaction_by_uuid(id)
+
+        dialog_view = EditTransactionDialogView(self.view)
+        dialog_controller = EditTransactionDialogController(
+            dialog_view, self.model, transaction
+        )
+
+        if dialog_controller.execute():
+            self.populate_transaction_table()
 
     def handle_delete(self):
         current_table_row_index = self.view.table_transactions.currentRow()
