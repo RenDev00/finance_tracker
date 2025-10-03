@@ -1,5 +1,6 @@
 from datetime import datetime
 from enum import Enum
+from uuid import uuid4
 
 
 class TransactionType(Enum):
@@ -15,6 +16,7 @@ class Transaction:
         transaction_category: str,
         transaction_date: str = None,
     ):
+        self.uuid = uuid4()
         self.amount = amount
         self.transaction_type = transaction_type
         self.transaction_category = transaction_category.lower()
