@@ -1,9 +1,10 @@
+import uuid
 from controller.new_transaction_dialog_controller import NewTransactionDialogController
 from model.finance_tracker import FinanceTracker
 from model.transaction import Transaction
 from view.finance_tracker_view import FinanceTrackerView
 
-from PySide6.QtWidgets import QTableWidgetItem
+from PySide6.QtWidgets import QTableWidgetItem, QMessageBox
 
 from view.new_transaction_dialog_view import NewTransactionDialogView
 
@@ -52,4 +53,20 @@ class FinanceTrackerController:
         pass
 
     def handle_delete(self):
-        pass
+        current_table_row_index = self.view.table_transactions.currentRow()
+        uuid_item = self.view.table_transactions.item(current_table_row_index, 0)
+        id = uuid.UUID(uuid_item.text())
+
+        dialog = QMessageBox(self.view)
+        dialog.setWindowTitle("Finance Tracker | Delete")
+        dialog.setText(
+            f"Delete the following transaction?\n\n{self.model.get_transaction_by_uuid(id)}"
+        )
+        dialog.setStandardButtons(
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+        dialog.setIcon(QMessageBox.Icon.Question)
+
+        if dialog.exec() == QMessageBox.StandardButton.Yes:
+            self.model.delete_transaction_by_uuid(id)
+            self.populate_transaction_table()

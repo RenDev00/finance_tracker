@@ -27,6 +27,13 @@ class FinanceTracker:
         self.save_transactions()
         print("Transaction added!")
 
+    def get_transaction_by_uuid(self, uuid: uuid.UUID):
+        return next(t for t in self.transactions if t.uuid == uuid)
+
+    def delete_transaction_by_uuid(self, uuid: uuid.UUID):
+        self.transactions.remove(self.get_transaction_by_uuid(uuid))
+        self.save_transactions()
+
     def load_transactions(self) -> list[Transaction]:
         if not os.path.exists(self.finance_data_path):
             return []
