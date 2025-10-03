@@ -15,11 +15,14 @@ class FinanceTracker:
         amount: float,
         transaction_type: TransactionType,
         transaction_category: str,
+        transaction_date: str = None,
     ):
         if amount <= 0:
             raise ValueError("Amount must be greater than 0")
 
-        new_transaction = Transaction(amount, transaction_type, transaction_category)
+        new_transaction = Transaction(
+            amount, transaction_type, transaction_category, transaction_date
+        )
         self.transactions.append(new_transaction)
         self.save_transactions()
         print("Transaction added!")

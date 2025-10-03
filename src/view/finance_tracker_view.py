@@ -10,7 +10,6 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QGroupBox,
 )
-from PySide6.QtGui import QAction
 
 
 class FinanceTrackerView(QMainWindow):
