@@ -35,10 +35,11 @@ class FinanceTrackerView(QMainWindow):
         self.button_search = QPushButton("Search")
 
         group_box_transactions = QGroupBox("Transactions")
-        self.table_transactions = QTableWidget(0, 4)
+        self.table_transactions = QTableWidget(0, 5)
         self.table_transactions.setHorizontalHeaderLabels(
-            ["Date", "Type", "Amount", "Category"]
+            ["UUID", "Date", "Type", "Amount", "Category"]
         )
+        self.table_transactions.hideColumn(0)
         self.table_transactions.horizontalHeader().setStretchLastSection(True)
         self.table_transactions.verticalHeader().setVisible(False)
         self.table_transactions.setEditTriggers(

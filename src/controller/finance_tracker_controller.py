@@ -30,6 +30,7 @@ class FinanceTrackerController:
             self.view.table_transactions.insertRow(row)
             for col, data in enumerate(
                 [
+                    str(t.uuid),
                     t.transaction_date,
                     t.transaction_type.name,
                     f"{round(t.amount, 2):.2f}",
@@ -39,7 +40,7 @@ class FinanceTrackerController:
                 item = QTableWidgetItem(data)
                 self.view.table_transactions.setItem(row, col, item)
 
-        self.view.table_transactions.resizeColumnToContents(0)
+        self.view.table_transactions.resizeColumnToContents(1)
 
     def handle_new(self):
         dialog_view = NewTransactionDialogView(self.view)
