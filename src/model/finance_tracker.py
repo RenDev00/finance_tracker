@@ -1,5 +1,6 @@
 import json
 import os
+import uuid
 
 from model.transaction import Transaction, TransactionType
 
@@ -35,6 +36,7 @@ class FinanceTracker:
                     TransactionType[t["type"]],
                     t["category"],
                     t["date"],
+                    uuid.UUID(t["uuid"]),
                 )
                 for t in data
             ]
