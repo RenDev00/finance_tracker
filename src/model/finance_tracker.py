@@ -43,6 +43,7 @@ class FinanceTracker:
         transaction.transaction_type = transaction_type
         transaction.transaction_category = transaction_category
         transaction.transaction_date = transaction_date
+        self.save_transactions()
 
     def delete_transaction_by_uuid(self, uuid: uuid.UUID):
         self.transactions.remove(self.get_transaction_by_uuid(uuid))
