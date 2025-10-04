@@ -10,8 +10,9 @@ A simple CLI tool to keep track of finances. Users can add, categorize and view 
 - Exception handling for invalid inputs.
 
 # Technologies
-- Python 3.8+
+- Python 3.11.6
 - JSON for data storage
+- PySide6 (QT for Python) for GUI creation
 - Built-in libraries: datetime, enum, json, os
 
 # Setup
@@ -25,18 +26,37 @@ git clone https://github.com/RenDev00/finance_tracker.git
 cd finance_tracker
 ```
 
-3. Run the application:
+3. Install the requirements:
 ```
-python ./src/main.py
+pip install -r requirements.txt
+```
+
+4. Run the application:
+- CLI
+```
+python ./src/main_cli.py
+```
+- GUI
+```
+python ./src/main_gui.py
 ```
 
 # Usage
+## For CLI:
 Run the program and follow the menu prompts.
 
 Example commands:
 
 - Add a transaction: Choose option 1, enter amount, type [expense / income], and category.
 - Filter by category: Choose option 5, enter category.
+
+## For GUI:
+Run the program and follow the menu prompts.
+
+Example commands:
+
+- Add a transaction: Click the "Add" button and provide the necessary information.
+- Filter and search: Enter a search term in the search bar and select whether to display all or only expense or income transactions using the dropdown.
 
 # License
 MIT License
