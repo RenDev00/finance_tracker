@@ -23,6 +23,8 @@ class FinanceTrackerView(QMainWindow):
         # Widgets
         central_widget = QWidget()
 
+        self.status_bar = self.statusBar()
+
         group_box_control = QGroupBox("Transaction Control")
         self.button_new = QPushButton("New")
         self.button_edit = QPushButton("Edit")

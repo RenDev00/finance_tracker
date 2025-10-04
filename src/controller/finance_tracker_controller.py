@@ -4,7 +4,7 @@ from controller.edit_transaction_dialog_controller import (
 )
 from controller.new_transaction_dialog_controller import NewTransactionDialogController
 from model.finance_tracker import FinanceTracker
-from model.transaction import Transaction
+from model.transaction import Transaction, TransactionType
 from view.edit_transaction_dialog_view import EditTransactionDialogView
 from view.finance_tracker_view import FinanceTrackerView
 
@@ -47,6 +47,7 @@ class FinanceTrackerController:
                 item = QTableWidgetItem(data)
                 self.view.table_transactions.setItem(row, col, item)
 
+        self.update_status_bar()
         self.view.table_transactions.resizeColumnToContents(1)
 
     def handle_new(self):
@@ -122,3 +123,8 @@ class FinanceTrackerController:
             ]
 
         self.populate_transaction_table(transactions)
+
+    def update_status_bar(self):
+        self.view.status_bar.showMessage(
+            f"Balance: {round(self.model.get_balance(), 2):.2f} | Total Income: {round(self.model.get_total_income(), 2):.2f} | Total Expenses: {round(self.model.get_total_expenses(), 2):.2f}"
+        )
