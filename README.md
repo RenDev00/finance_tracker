@@ -1,5 +1,5 @@
 # Finance Tracker
-A simple CLI tool to keep track of finances. Users can add, categorize and view information about transactions.
+A simple GUI or CLI tool to keep track of finances. Users can add, categorize and view information about transactions.
 
 # Screenshots
 ## GUI
