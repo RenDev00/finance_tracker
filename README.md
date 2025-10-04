@@ -7,6 +7,7 @@ A simple CLI tool to keep track of finances. Users can add, categorize and view 
 - Show the current balance.
 - Show transactions filtered by category.
 - Persistant storage using a JSON file for reuse across sessions.
+- GUI for easy operation by user.
 - Exception handling for invalid inputs.
 
 # Technologies
