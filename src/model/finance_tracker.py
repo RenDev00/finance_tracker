@@ -1,7 +1,8 @@
 import json
 import os
+import uuid
 
-from transaction import Transaction, TransactionType
+from model.transaction import Transaction, TransactionType
 
 
 class FinanceTracker:
@@ -14,14 +15,39 @@ class FinanceTracker:
         amount: float,
         transaction_type: TransactionType,
         transaction_category: str,
+        transaction_date: str = None,
     ):
         if amount <= 0:
             raise ValueError("Amount must be greater than 0")
 
-        new_transaction = Transaction(amount, transaction_type, transaction_category)
+        new_transaction = Transaction(
+            amount, transaction_type, transaction_category, transaction_date
+        )
         self.transactions.append(new_transaction)
         self.save_transactions()
         print("Transaction added!")
+
+    def get_transaction_by_uuid(self, uuid: uuid.UUID):
+        return next(t for t in self.transactions if t.uuid == uuid)
+
+    def edit_transaction_by_uuid(
+        self,
+        uuid: uuid.UUID,
+        amount: float,
+        transaction_type: TransactionType,
+        transaction_category: str,
+        transaction_date: str,
+    ):
+        transaction = self.get_transaction_by_uuid(uuid)
+        transaction.amount = amount
+        transaction.transaction_type = transaction_type
+        transaction.transaction_category = transaction_category
+        transaction.transaction_date = transaction_date
+        self.save_transactions()
+
+    def delete_transaction_by_uuid(self, uuid: uuid.UUID):
+        self.transactions.remove(self.get_transaction_by_uuid(uuid))
+        self.save_transactions()
 
     def load_transactions(self) -> list[Transaction]:
         if not os.path.exists(self.finance_data_path):
@@ -35,6 +61,7 @@ class FinanceTracker:
                     TransactionType[t["type"]],
                     t["category"],
                     t["date"],
+                    uuid.UUID(t["uuid"]),
                 )
                 for t in data
             ]

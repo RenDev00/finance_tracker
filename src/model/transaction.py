@@ -1,5 +1,6 @@
 from datetime import datetime
 from enum import Enum
+import uuid
 
 
 class TransactionType(Enum):
@@ -14,7 +15,9 @@ class Transaction:
         transaction_type: TransactionType,
         transaction_category: str,
         transaction_date: str = None,
+        id: uuid.UUID = None,
     ):
+        self.uuid = id if id else uuid.uuid4()
         self.amount = amount
         self.transaction_type = transaction_type
         self.transaction_category = transaction_category.lower()
@@ -29,6 +32,7 @@ class Transaction:
 
     def as_dict(self) -> dict:
         return {
+            "uuid": str(self.uuid),
             "amount": self.amount,
             "type": self.transaction_type.name,
             "category": self.transaction_category,
