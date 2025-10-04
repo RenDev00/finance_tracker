@@ -1,6 +1,13 @@
 # Finance Tracker
 A simple CLI tool to keep track of finances. Users can add, categorize and view information about transactions.
 
+# Screenshots
+## GUI
+![GUI Screenshot](https://i.imgur.com/gmhlwGn.gif)
+
+## CLI
+![CLI Screenshot](https://i.imgur.com/TVIMag0.png)
+
 # Features
 - Add expese or income transactions with categories (e.g. Utility, Rent, Groceries, etc...).
 - Show the sum of expense or income transactions.
